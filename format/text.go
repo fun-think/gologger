@@ -45,7 +45,7 @@ func (f *TextFormat) Format(level gologger.Level, msg string, logger *gologger.L
 			f.TimeFormat = "2006-01-02 15:04:05.000"
 		}
 
-		f.IsTerminal = IsTerminal(gologger.Output)
+		f.IsTerminal = IsTerminal(logger.Output)
 
 		host, _ := os.Hostname()
 		f.host = []byte(host)
