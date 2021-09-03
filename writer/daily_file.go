@@ -7,6 +7,7 @@ import (
 	"path"
 	"path/filepath"
 	"sort"
+	"errors"
 	"strings"
 	"time"
 )
@@ -36,7 +37,13 @@ func (w *DailyFileWriter) Write(p []byte) (n int, err error) {
 
 func (w *DailyFileWriter) openFile(now *time.Time) (err error) {
 	name := fmt.Sprintf("%s.%s.log", w.Name, now.Format("20060102"))
-
+	stat, err := os.Stat(w.Name) 
+    if err != nil { 
+        return err
+    }
+	if !stat.IsDir() {
+		return errors.New(fmt.Sprintf("%s is not a dir", w.Name))
+	}
 	// remove symbol link if exist
 	os.Remove(w.Name)
 

@@ -315,7 +315,7 @@ func New() *Logger {
 	return &Logger{
 		Level:     INFO,
 		Format:    new(simpleFormat),
-		Output:       os.Stdout,
+		Output:    os.Stdout,
 	}
 }
 
