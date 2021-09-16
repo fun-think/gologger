@@ -22,7 +22,10 @@ type NewFileWriter struct {
 // Write implements io.Writer
 func (w *NewFileWriter) Write(p []byte) (n int, err error) {
 	if w.file == nil {
-		w.openFile()
+		err := w.openFile()
+		if err != nil {
+			return 0, err
+		}
 	}
 
 	return w.file.Write(p)

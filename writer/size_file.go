@@ -20,10 +20,16 @@ type SizeFileWriter struct {
 // Write implements io.Writer
 func (w *SizeFileWriter) Write(p []byte) (n int, err error) {
 	if w.file == nil {
-		w.openCurrentFile()
+		err := w.openCurrentFile()
+		if err != nil {
+			return 0, err
+		}
 	} else if w.currentSize > w.MaxSize {
 		w.file.Close()
-		w.openNextFile()
+		err := w.openNextFile()
+		if err != nil {
+			return 0, err
+		}
 	}
 
 	w.currentSize += int64(len(p))
