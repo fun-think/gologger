@@ -1,13 +1,13 @@
 package writer
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"os"
 	"path"
 	"path/filepath"
 	"sort"
-	"errors"
 	"strings"
 	"time"
 )
@@ -26,31 +26,29 @@ func (w *DailyFileWriter) Write(p []byte) (n int, err error) {
 	now := time.Now()
 
 	if w.file == nil {
-		w.openFile(&now)
+		err := w.openFile(&now)
+		if err != nil {
+			return 0, err
+		}
 	} else if now.Unix() >= w.nextDayTime {
 		w.file.Close()
-		w.openFile(&now)
+		err := w.openFile(&now)
+		if err != nil {
+			return 0, err
+		}
 	}
 
 	return w.file.Write(p)
 }
 
 func (w *DailyFileWriter) openFile(now *time.Time) (err error) {
-	name := fmt.Sprintf("%s.%s.log", w.Name, now.Format("20060102"))
-	stat, err := os.Stat(w.Name) 
-    if err != nil { 
-        return err
-    }
-	if !stat.IsDir() {
-		return errors.New(fmt.Sprintf("%s is not a dir", w.Name))
-	}
-	// remove symbol link if exist
-	os.Remove(w.Name)
-
-	// create symbol
-	err = os.Symlink(path.Base(name), w.Name)
+	name := fmt.Sprintf("%s/%s.log", w.Name, now.Format("20060102"))
+	stat, err := os.Stat(w.Name)
 	if err != nil {
 		return err
+	}
+	if !stat.IsDir() {
+		return errors.New(fmt.Sprintf("%s is not a dir", w.Name))
 	}
 
 	w.file, err = os.OpenFile(name, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)

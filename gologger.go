@@ -1,13 +1,14 @@
 package gologger
 
 import (
+	"fmt"
 	"io"
 	"os"
-	"fmt"
-	"time"
-	"sync"
 	"strings"
+	"sync"
+	"time"
 )
+
 //https://github.com/subchen/go-log
 var (
 	_ StdLog       = Default
@@ -304,18 +305,18 @@ var Exit = os.Exit
 
 // Logger is represents an active logging object
 type Logger struct {
-	mutex     sync.Mutex
-	Level     Level
-	Format 	  Format
-	Output    io.Writer
+	mutex  sync.Mutex
+	Level  Level
+	Format Format
+	Output io.Writer
 }
 
 // New creates a new Logger
 func New() *Logger {
 	return &Logger{
-		Level:     INFO,
-		Format:    new(simpleFormat),
-		Output:    os.Stdout,
+		Level:  INFO,
+		Format: new(simpleFormat),
+		Output: os.Stdout,
 	}
 }
 
@@ -520,7 +521,7 @@ func (l *Logger) log(level Level, msg string) {
 
 	_, err := l.Output.Write(line)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Failed to write log, %v\n", err)
+		fmt.Fprintf(os.Stderr, "failed to write log, %v\n", err)
 	}
 }
 
