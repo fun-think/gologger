@@ -7,12 +7,13 @@ import (
 	"strconv"
 	"sync"
 	"time"
+
 	"github.com/fun-think/gologger"
 )
 
 var (
 	fmtBuffer = sync.Pool{
-		New: func() interface{} {
+		New: func() any {
 			return new(bytes.Buffer)
 		},
 	}
@@ -24,10 +25,10 @@ type TextFormat struct {
 	TimeFormat string
 	IsTerminal bool
 
-	init   sync.Once
-	host   []byte
-	app    []byte
-	pid    []byte
+	init sync.Once
+	host []byte
+	app  []byte
+	pid  []byte
 }
 
 // Format implements log.Formatter
@@ -82,7 +83,7 @@ func (f *TextFormat) Format(level gologger.Level, msg string, logger *gologger.L
 	buf.Write(f.pid)
 
 	// file, line
-	file, line := FilelineCaller(4)
+	file, line := FileLineCaller(4)
 	buf.WriteByte(' ')
 	buf.WriteString(file)
 	buf.WriteByte(':')

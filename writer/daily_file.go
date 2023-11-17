@@ -1,9 +1,7 @@
 package writer
 
 import (
-	"errors"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path"
 	"path/filepath"
@@ -48,7 +46,7 @@ func (w *DailyFileWriter) openFile(now *time.Time) (err error) {
 		return err
 	}
 	if !stat.IsDir() {
-		return errors.New(fmt.Sprintf("%s is not a dir", w.Name))
+		return fmt.Errorf("%s is not a dir", w.Name)
 	}
 
 	w.file, err = os.OpenFile(name, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
@@ -70,7 +68,7 @@ func (w *DailyFileWriter) openFile(now *time.Time) (err error) {
 func (w *DailyFileWriter) cleanFiles() {
 	dir := path.Dir(w.Name)
 
-	fileList, err := ioutil.ReadDir(dir)
+	fileList, err := os.ReadDir(dir)
 	if err != nil {
 		return
 	}

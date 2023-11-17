@@ -1,3 +1,3 @@
 module github.com/fun-think/gologger
 
-go 1.16
+go 1.20

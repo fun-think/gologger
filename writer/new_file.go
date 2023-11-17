@@ -2,7 +2,6 @@ package writer
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path"
 	"path/filepath"
@@ -59,7 +58,7 @@ func (w *NewFileWriter) openFile() (err error) {
 func (w *NewFileWriter) cleanFiles() {
 	dir := path.Dir(w.Name)
 
-	fileList, err := ioutil.ReadDir(dir)
+	fileList, err := os.ReadDir(dir)
 	if err != nil {
 		return
 	}

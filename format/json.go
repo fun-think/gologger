@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"sync"
 	"time"
+
 	"github.com/fun-think/gologger"
 )
 
@@ -37,10 +38,10 @@ func (f *JSONFormat) Format(level gologger.Level, msg string, logger *gologger.L
 		f.pid = os.Getpid()
 	})
 
-	data := make(map[string]interface{}, 8)
+	data := make(map[string]any, 8)
 
 	// file, line
-	file, line := FilelineCaller(4)
+	file, line := FileLineCaller(4)
 
 	data["time"] = time.Now().Format(f.TimeFormat)
 	data["level"] = level.String()
@@ -58,7 +59,7 @@ func (f *JSONFormat) Format(level gologger.Level, msg string, logger *gologger.L
 	return serialized
 }
 
-func marshal(v interface{}) ([]byte, error) {
+func marshal(v any) ([]byte, error) {
 	var buf bytes.Buffer
 	encoder := json.NewEncoder(&buf)
 	encoder.SetEscapeHTML(false)

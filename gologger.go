@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-//https://github.com/subchen/go-log
+// https://github.com/subchen/go-log
 var (
 	_ StdLog       = Default
 	_ LogInterface = Default
@@ -17,44 +17,44 @@ var (
 
 // StdLog is interface for builtin log
 type StdLog interface {
-	Print(...interface{})
-	Printf(string, ...interface{})
-	Println(...interface{})
+	Print(...any)
+	Printf(string, ...any)
+	Println(...any)
 
-	Fatal(...interface{})
-	Fatalf(string, ...interface{})
-	Fatalln(...interface{})
+	Fatal(...any)
+	Fatalf(string, ...any)
+	Fatalln(...any)
 
-	Panic(...interface{})
-	Panicf(string, ...interface{})
-	Panicln(...interface{})
+	Panic(...any)
+	Panicf(string, ...any)
+	Panicln(...any)
 }
 
 // LogInterface is interface for this logger
 type LogInterface interface {
-	Debug(...interface{})
-	Info(...interface{})
-	Print(...interface{})
-	Warn(...interface{})
-	Error(...interface{})
-	Panic(...interface{})
-	Fatal(...interface{})
+	Debug(...any)
+	Info(...any)
+	Print(...any)
+	Warn(...any)
+	Error(...any)
+	Panic(...any)
+	Fatal(...any)
 
-	Debugln(...interface{})
-	Infoln(...interface{})
-	Println(...interface{})
-	Warnln(...interface{})
-	Errorln(...interface{})
-	Panicln(...interface{})
-	Fatalln(...interface{})
+	Debugln(...any)
+	Infoln(...any)
+	Println(...any)
+	Warnln(...any)
+	Errorln(...any)
+	Panicln(...any)
+	Fatalln(...any)
 
-	Debugf(string, ...interface{})
-	Infof(string, ...interface{})
-	Printf(string, ...interface{})
-	Warnf(string, ...interface{})
-	Errorf(string, ...interface{})
-	Panicf(string, ...interface{})
-	Fatalf(string, ...interface{})
+	Debugf(string, ...any)
+	Infof(string, ...any)
+	Printf(string, ...any)
+	Warnf(string, ...any)
+	Errorf(string, ...any)
+	Panicf(string, ...any)
+	Fatalf(string, ...any)
 }
 
 // Format is a interface used to implement a custom Format
@@ -196,107 +196,107 @@ func IsDisabled() bool {
 }
 
 // Debug outputs message, Arguments are handled by fmt.Sprint
-func Debug(obj ...interface{}) {
+func Debug(obj ...any) {
 	Default.Debug(obj...)
 }
 
 // Info outputs message, Arguments are handled by fmt.Sprint
-func Info(obj ...interface{}) {
+func Info(obj ...any) {
 	Default.Info(obj...)
 }
 
 // Print outputs message, Arguments are handled by fmt.Sprint
-func Print(obj ...interface{}) {
+func Print(obj ...any) {
 	Default.Print(obj...)
 }
 
 // Warn outputs message, Arguments are handled by fmt.Sprint
-func Warn(obj ...interface{}) {
+func Warn(obj ...any) {
 	Default.Warn(obj...)
 }
 
 // Error outputs message, Arguments are handled by fmt.Sprint
-func Error(obj ...interface{}) {
+func Error(obj ...any) {
 	Default.Error(obj...)
 }
 
 // Panic outputs message, and followed by a call to panic() Arguments are handled by fmt.Sprint
-func Panic(obj ...interface{}) {
+func Panic(obj ...any) {
 	Default.Panic(obj...)
 }
 
 // Fatal outputs message, and followed by a call to os.Exit(1) Arguments are handled by fmt.Sprint
-func Fatal(obj ...interface{}) {
+func Fatal(obj ...any) {
 	Default.Fatal(obj...)
 }
 
 // Debugln outputs message, Arguments are handled by fmt.Sprintln
-func Debugln(obj ...interface{}) {
+func Debugln(obj ...any) {
 	Default.Debugln(obj...)
 }
 
 // Infoln outputs message, Arguments are handled by fmt.Sprintln
-func Infoln(obj ...interface{}) {
+func Infoln(obj ...any) {
 	Default.Infoln(obj...)
 }
 
 // Println outputs message, Arguments are handled by fmt.Sprintln
-func Println(obj ...interface{}) {
+func Println(obj ...any) {
 	Default.Println(obj...)
 }
 
 // Warnln outputs message, Arguments are handled by fmt.Sprintln
-func Warnln(obj ...interface{}) {
+func Warnln(obj ...any) {
 	Default.Warnln(obj...)
 }
 
 // Errorln outputs message, Arguments are handled by fmt.Sprintln
-func Errorln(obj ...interface{}) {
+func Errorln(obj ...any) {
 	Default.Errorln(obj...)
 }
 
 // Panicln outputs message and followed by a call to panic(), Arguments are handled by fmt.Sprintln
-func Panicln(obj ...interface{}) {
+func Panicln(obj ...any) {
 	Default.Panicln(obj...)
 }
 
 // Fatalln outputs message and followed by a call to os.Exit(1), Arguments are handled by fmt.Sprintln
-func Fatalln(obj ...interface{}) {
+func Fatalln(obj ...any) {
 	Default.Fatalln(obj...)
 }
 
 // Debugf outputs message, Arguments are handled by fmt.Sprintf
-func Debugf(msg string, args ...interface{}) {
+func Debugf(msg string, args ...any) {
 	Default.Debugf(msg, args...)
 }
 
 // Infof outputs message, Arguments are handled by fmt.Sprintf
-func Infof(msg string, args ...interface{}) {
+func Infof(msg string, args ...any) {
 	Default.Infof(msg, args...)
 }
 
 // Printf outputs message, Arguments are handled by fmt.Sprintf
-func Printf(msg string, args ...interface{}) {
+func Printf(msg string, args ...any) {
 	Default.Printf(msg, args...)
 }
 
 // Warnf outputs message, Arguments are handled by fmt.Sprintf
-func Warnf(msg string, args ...interface{}) {
+func Warnf(msg string, args ...any) {
 	Default.Warnf(msg, args...)
 }
 
 // Errorf outputs message, Arguments are handled by fmt.Sprintf
-func Errorf(msg string, args ...interface{}) {
+func Errorf(msg string, args ...any) {
 	Default.Errorf(msg, args...)
 }
 
 // Panicf outputs message and followed by a call to panic(), Arguments are handled by fmt.Sprintf
-func Panicf(msg string, args ...interface{}) {
+func Panicf(msg string, args ...any) {
 	Default.Panicf(msg, args...)
 }
 
 // Fatalf outputs message and followed by a call to os.Exit(1), Arguments are handled by fmt.Sprintf
-func Fatalf(msg string, args ...interface{}) {
+func Fatalf(msg string, args ...any) {
 	Default.Fatalf(msg, args...)
 }
 
@@ -361,42 +361,42 @@ func (l *Logger) IsDisabled() bool {
 }
 
 // Debug outputs message, Arguments are handled by fmt.Sprint
-func (l *Logger) Debug(obj ...interface{}) {
+func (l *Logger) Debug(obj ...any) {
 	if l.Level >= DEBUG {
 		l.log(DEBUG, fmt.Sprint(obj...))
 	}
 }
 
 // Info outputs message, Arguments are handled by fmt.Sprint
-func (l *Logger) Info(obj ...interface{}) {
+func (l *Logger) Info(obj ...any) {
 	if l.Level >= INFO {
 		l.log(INFO, fmt.Sprint(obj...))
 	}
 }
 
 // Print outputs message, Arguments are handled by fmt.Sprint
-func (l *Logger) Print(obj ...interface{}) {
+func (l *Logger) Print(obj ...any) {
 	if l.Level != OFF {
 		l.log(INFO, fmt.Sprint(obj...))
 	}
 }
 
 // Warn outputs message, Arguments are handled by fmt.Sprint
-func (l *Logger) Warn(obj ...interface{}) {
+func (l *Logger) Warn(obj ...any) {
 	if l.Level >= WARN {
 		l.log(WARN, fmt.Sprint(obj...))
 	}
 }
 
 // Error outputs message, Arguments are handled by fmt.Sprint
-func (l *Logger) Error(obj ...interface{}) {
+func (l *Logger) Error(obj ...any) {
 	if l.Level >= ERROR {
 		l.log(ERROR, fmt.Sprint(obj...))
 	}
 }
 
 // Panic outputs message, and followed by a call to panic() Arguments are handled by fmt.Sprint
-func (l *Logger) Panic(obj ...interface{}) {
+func (l *Logger) Panic(obj ...any) {
 	if l.Level >= PANIC {
 		l.log(PANIC, fmt.Sprint(obj...))
 	}
@@ -404,7 +404,7 @@ func (l *Logger) Panic(obj ...interface{}) {
 }
 
 // Fatal outputs message and followed by a call to os.Exit(1), Arguments are handled by fmt.Sprint
-func (l *Logger) Fatal(obj ...interface{}) {
+func (l *Logger) Fatal(obj ...any) {
 	if l.Level >= FATAL {
 		l.log(FATAL, fmt.Sprint(obj...))
 	}
@@ -412,42 +412,42 @@ func (l *Logger) Fatal(obj ...interface{}) {
 }
 
 // Debugln outputs message, Arguments are handled by fmt.Sprintln
-func (l *Logger) Debugln(obj ...interface{}) {
+func (l *Logger) Debugln(obj ...any) {
 	if l.Level >= DEBUG {
 		l.log(DEBUG, vsprintln(obj...))
 	}
 }
 
 // Infoln outputs message, Arguments are handled by fmt.Sprintln
-func (l *Logger) Infoln(obj ...interface{}) {
+func (l *Logger) Infoln(obj ...any) {
 	if l.Level >= INFO {
 		l.log(INFO, vsprintln(obj...))
 	}
 }
 
 // Println outputs message, Arguments are handled by fmt.Sprintln
-func (l *Logger) Println(obj ...interface{}) {
+func (l *Logger) Println(obj ...any) {
 	if l.Level != OFF {
 		l.log(INFO, vsprintln(obj...))
 	}
 }
 
 // Warnln outputs message, Arguments are handled by fmt.Sprintln
-func (l *Logger) Warnln(obj ...interface{}) {
+func (l *Logger) Warnln(obj ...any) {
 	if l.Level >= WARN {
 		l.log(WARN, vsprintln(obj...))
 	}
 }
 
 // Errorln outputs message, Arguments are handled by fmt.Sprintln
-func (l *Logger) Errorln(obj ...interface{}) {
+func (l *Logger) Errorln(obj ...any) {
 	if l.Level >= ERROR {
 		l.log(ERROR, vsprintln(obj...))
 	}
 }
 
 // Panicln outputs message and followed by a call to panic(), Arguments are handled by fmt.Sprintln
-func (l *Logger) Panicln(obj ...interface{}) {
+func (l *Logger) Panicln(obj ...any) {
 	if l.Level >= PANIC {
 		l.log(PANIC, vsprintln(obj...))
 	}
@@ -455,7 +455,7 @@ func (l *Logger) Panicln(obj ...interface{}) {
 }
 
 // Fatalln outputs message and followed by a call to os.Exit(1), Arguments are handled by fmt.Sprintln
-func (l *Logger) Fatalln(obj ...interface{}) {
+func (l *Logger) Fatalln(obj ...any) {
 	if l.Level >= FATAL {
 		l.log(FATAL, vsprintln(obj...))
 	}
@@ -463,42 +463,42 @@ func (l *Logger) Fatalln(obj ...interface{}) {
 }
 
 // Debugf outputs message, Arguments are handles by fmt.Sprintf
-func (l *Logger) Debugf(msg string, args ...interface{}) {
+func (l *Logger) Debugf(msg string, args ...any) {
 	if l.Level >= DEBUG {
 		l.log(DEBUG, fmt.Sprintf(msg, args...))
 	}
 }
 
 // Infof outputs message, Arguments are handles by fmt.Sprintf
-func (l *Logger) Infof(msg string, args ...interface{}) {
+func (l *Logger) Infof(msg string, args ...any) {
 	if l.Level >= INFO {
 		l.log(INFO, fmt.Sprintf(msg, args...))
 	}
 }
 
 // Printf outputs message, Arguments are handles by fmt.Sprintf
-func (l *Logger) Printf(msg string, args ...interface{}) {
+func (l *Logger) Printf(msg string, args ...any) {
 	if l.Level != OFF {
 		l.log(INFO, fmt.Sprintf(msg, args...))
 	}
 }
 
 // Warnf outputs message, Arguments are handles by fmt.Sprintf
-func (l *Logger) Warnf(msg string, args ...interface{}) {
+func (l *Logger) Warnf(msg string, args ...any) {
 	if l.Level >= WARN {
 		l.log(WARN, fmt.Sprintf(msg, args...))
 	}
 }
 
 // Errorf outputs message, Arguments are handles by fmt.Sprintf
-func (l *Logger) Errorf(msg string, args ...interface{}) {
+func (l *Logger) Errorf(msg string, args ...any) {
 	if l.Level >= ERROR {
 		l.log(ERROR, fmt.Sprintf(msg, args...))
 	}
 }
 
 // Panicf outputs message and followed by a call to panic(), Arguments are handles by fmt.Sprintf
-func (l *Logger) Panicf(msg string, args ...interface{}) {
+func (l *Logger) Panicf(msg string, args ...any) {
 	if l.Level >= PANIC {
 		l.log(PANIC, fmt.Sprintf(msg, args...))
 	}
@@ -506,7 +506,7 @@ func (l *Logger) Panicf(msg string, args ...interface{}) {
 }
 
 // Fatalf outputs message and followed by a call to os.Exit(1), Arguments are handles by fmt.Sprintf
-func (l *Logger) Fatalf(msg string, args ...interface{}) {
+func (l *Logger) Fatalf(msg string, args ...any) {
 	if l.Level >= FATAL {
 		l.log(FATAL, fmt.Sprintf(msg, args...))
 	}
@@ -526,7 +526,7 @@ func (l *Logger) log(level Level, msg string) {
 }
 
 // vsprintln => spaces are always added between operands
-func vsprintln(obj ...interface{}) string {
+func vsprintln(obj ...any) string {
 	msg := fmt.Sprintln(obj...)
 	return msg[:len(msg)-1]
 }
